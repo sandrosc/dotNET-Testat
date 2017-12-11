@@ -11,24 +11,31 @@ namespace AutoReservation.Service.Wcf
         #region Auto
         private static Auto GetAutoInstance(AutoDto dto)
         {
-            if (dto.AutoKlasse == AutoKlasse.Standard) { return new StandardAuto(); }
-            if (dto.AutoKlasse == AutoKlasse.Mittelklasse) { return new MittelklasseAuto(); }
-            if (dto.AutoKlasse == AutoKlasse.Luxusklasse) { return new LuxusklasseAuto(); }
-            throw new ArgumentException("Unknown AutoDto implementation.", nameof(dto));
+            switch (dto.AutoKlasse)
+            {
+                case AutoKlasse.Standard:
+                    return new StandardAuto();
+                case AutoKlasse.Mittelklasse:
+                    return new MittelklasseAuto();
+                case AutoKlasse.Luxusklasse:
+                    return new LuxusklasseAuto();
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         public static Auto ConvertToEntity(this AutoDto dto)
         {
             if (dto == null) { return null; }
 
-            Auto auto = GetAutoInstance(dto);
+            var auto = GetAutoInstance(dto);
             auto.Id = dto.Id;
             auto.Marke = dto.Marke;
             auto.Tagestarif = dto.Tagestarif;
             auto.RowVersion = dto.RowVersion;
 
-            if (auto is LuxusklasseAuto)
+            if (auto is LuxusklasseAuto luxusklasseAuto)
             {
-                ((LuxusklasseAuto)auto).Basistarif = dto.Basistarif;
+                luxusklasseAuto.Basistarif = dto.Basistarif;
             }
             return auto;
         }
@@ -36,7 +43,7 @@ namespace AutoReservation.Service.Wcf
         {
             if (entity == null) { return null; }
 
-            AutoDto dto = new AutoDto
+            var dto = new AutoDto
             {
                 Id = entity.Id,
                 Marke = entity.Marke,
@@ -105,7 +112,7 @@ namespace AutoReservation.Service.Wcf
         {
             if (dto == null) { return null; }
 
-            Reservation reservation = new Reservation
+            var reservation = new Reservation
             {
                 ReservationsNr = dto.ReservationsNr,
                 Von = dto.Von,
@@ -143,8 +150,7 @@ namespace AutoReservation.Service.Wcf
 
         private static List<TTarget> ConvertGenericList<TSource, TTarget>(this IEnumerable<TSource> source, Func<TSource, TTarget> converter)
         {
-            if (source == null) { return null; }
-            if (converter == null) { return null; }
+            if (source == null || converter == null) { return null; }
 
             return source.Select(converter).ToList();
         }

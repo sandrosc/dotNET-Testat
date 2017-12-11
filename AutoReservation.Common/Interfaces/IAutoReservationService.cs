@@ -11,20 +11,20 @@ namespace AutoReservation.Common.Interfaces
         #region Auto
 
         [OperationContract]
-        List<AutoDto> SelectAutos();
+        List<AutoDto> GetAutos();
 
         [OperationContract]
-        AutoDto SelectAuto(int id);
+        AutoDto GetAuto(int id);
 
         [OperationContract]
-        void InsertAuto(AutoDto auto);
+        void AddAuto(AutoDto auto);
 
         [OperationContract]
         [FaultContract(typeof(OptimisticConcurrencyFault<AutoDto>))]
         void UpdateAuto(AutoDto auto);
 
         [OperationContract]
-        void DeleteAuto(AutoDto auto);
+        void RemoveAuto(AutoDto auto);
 
         [OperationContract]
         bool IsAutoAvaible(int id);
@@ -34,35 +34,35 @@ namespace AutoReservation.Common.Interfaces
         #region Kunde
 
         [OperationContract]
-        List<KundeDto> SelectKunden();
+        List<KundeDto> GetKunden();
 
         [OperationContract]
-        KundeDto SelectKunde(int id);
+        KundeDto GetKunde(int id);
 
         [OperationContract]
-        void InsertKunde(KundeDto kunde);
+        void AddKunde(KundeDto kunde);
 
         [OperationContract]
         [FaultContract(typeof(OptimisticConcurrencyFault<KundeDto>))]
         void UpdateKunde(KundeDto kunde);
 
         [OperationContract]
-        void DeleteKunde(KundeDto kunde);
+        void RemoveKunde(KundeDto kunde);
 
         #endregion
 
         #region Reservation
 
         [OperationContract]
-        List<ReservationDto> SelectReservationen();
+        List<ReservationDto> GetReservationen();
 
         [OperationContract]
-        KundeDto SelectReservation(int id);
+        ReservationDto GetReservation(int id);
 
         [OperationContract]
         [FaultContract(typeof(InvalidDateRangeFault))]
         [FaultContract(typeof(UnavailableAutoFault))]
-        void InsertReservation(ReservationDto reservation);
+        void AddReservation(ReservationDto reservation);
 
         [FaultContract(typeof(OptimisticConcurrencyFault<ReservationDto>))]
         [FaultContract(typeof(InvalidDateRangeFault))]
@@ -71,7 +71,7 @@ namespace AutoReservation.Common.Interfaces
         void UpdateReservation(ReservationDto reservation);
 
         [OperationContract]
-        void DeleteReservation(ReservationDto reservation);
+        void RemoveReservation(ReservationDto reservation);
 
         #endregion
     }

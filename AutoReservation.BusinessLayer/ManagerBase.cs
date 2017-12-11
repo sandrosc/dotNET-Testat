@@ -71,7 +71,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        protected List<T> GetList()
+        public List<T> GetList()
         {
             using (var context = new AutoReservationContext())
             {
