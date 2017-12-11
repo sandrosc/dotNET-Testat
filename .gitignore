@@ -2,3 +2,4 @@
 **/obj
 **/sqlite3/
 *.cache
+*.ide
