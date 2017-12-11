@@ -1,3 +1,4 @@
 ﻿**/bin
 **/obj
 **/sqlite3/
+*.cache

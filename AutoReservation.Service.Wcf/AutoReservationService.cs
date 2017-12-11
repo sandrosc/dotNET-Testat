@@ -157,6 +157,14 @@ namespace AutoReservation.Service.Wcf
             {
                 throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
             }
+            catch (InvalidDateRangeException)
+            {
+                throw new FaultException<InvalidDateRangeFault>(new InvalidDateRangeFault()) { };
+            }
+            catch (UnavailableAutoException)
+            {
+                throw new FaultException<UnavailableAutoFault>(new UnavailableAutoFault()) { };
+            }
         }
 
         public void RemoveReservation(ReservationDto reservation)
@@ -169,6 +177,14 @@ namespace AutoReservation.Service.Wcf
             catch (OptimisticConcurrencyException<Auto>)
             {
                 throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
+            }
+            catch (InvalidDateRangeException)
+            {
+                throw new FaultException<InvalidDateRangeFault>(new InvalidDateRangeFault()) { };
+            }
+            catch (UnavailableAutoException)
+            {
+                throw new FaultException<UnavailableAutoFault>(new UnavailableAutoFault()) { };
             }
         }
 
