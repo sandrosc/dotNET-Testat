@@ -78,6 +78,9 @@
     </Compile>
     <Compile Include="DataTransferObjects\AutoDto.cs" />
     <Compile Include="DataTransferObjects\AutoKlasse.cs" />
+    <Compile Include="DataTransferObjects\Faults\InvalidDateRangeFault.cs" />
+    <Compile Include="DataTransferObjects\Faults\OptimisticConcurrencyFault.cs" />
+    <Compile Include="DataTransferObjects\Faults\UnavailableAutoFault.cs" />
     <Compile Include="DataTransferObjects\KundeDto.cs" />
     <Compile Include="DataTransferObjects\ReservationDto.cs" />
     <Compile Include="Interfaces\IAutoReservationService.cs" />
@@ -92,9 +95,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataTransferObjects\Faults\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
