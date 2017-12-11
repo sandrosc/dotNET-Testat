@@ -1,6 +1,7 @@
 ﻿using AutoReservation.Common.DataTransferObjects;
 using System.Collections.Generic;
 using System.ServiceModel;
+using AutoReservation.Common.DataTransferObjects.Faults;
 
 namespace AutoReservation.Common.Interfaces
 {
@@ -8,6 +9,7 @@ namespace AutoReservation.Common.Interfaces
     public interface IAutoReservationService
     {
         #region Auto
+
         [OperationContract]
         List<AutoDto> SelectAutos();
 
@@ -18,6 +20,7 @@ namespace AutoReservation.Common.Interfaces
         void InsertAuto(AutoDto auto);
 
         [OperationContract]
+        [FaultContract(typeof(OptimisticConcurrencyFault<AutoDto>))]
         void UpdateAuto(AutoDto auto);
 
         [OperationContract]
@@ -25,9 +28,11 @@ namespace AutoReservation.Common.Interfaces
 
         [OperationContract]
         bool IsAutoAvaible(int id);
+
         #endregion
 
         #region Kunde
+
         [OperationContract]
         List<KundeDto> SelectKunden();
 
@@ -38,13 +43,16 @@ namespace AutoReservation.Common.Interfaces
         void InsertKunde(KundeDto kunde);
 
         [OperationContract]
+        [FaultContract(typeof(OptimisticConcurrencyFault<KundeDto>))]
         void UpdateKunde(KundeDto kunde);
 
         [OperationContract]
         void DeleteKunde(KundeDto kunde);
+
         #endregion
 
         #region Reservation
+
         [OperationContract]
         List<ReservationDto> SelectReservationen();
 
@@ -52,13 +60,19 @@ namespace AutoReservation.Common.Interfaces
         KundeDto SelectReservation(int id);
 
         [OperationContract]
+        [FaultContract(typeof(InvalidDateRangeFault))]
+        [FaultContract(typeof(UnavailableAutoFault))]
         void InsertReservation(ReservationDto reservation);
 
+        [FaultContract(typeof(OptimisticConcurrencyFault<ReservationDto>))]
+        [FaultContract(typeof(InvalidDateRangeFault))]
+        [FaultContract(typeof(UnavailableAutoFault))]
         [OperationContract]
         void UpdateReservation(ReservationDto reservation);
 
         [OperationContract]
         void DeleteReservation(ReservationDto reservation);
+
         #endregion
     }
 }
