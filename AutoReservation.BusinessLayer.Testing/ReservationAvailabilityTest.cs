@@ -1,7 +1,5 @@
-﻿using AutoReservation.Dal.Entities;
-using AutoReservation.TestEnvironment;
+﻿using AutoReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace AutoReservation.BusinessLayer.Testing
 {

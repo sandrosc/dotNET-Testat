@@ -8,8 +8,8 @@ namespace AutoReservation.BusinessLayer.Testing
     [TestClass]
     public class KundeUpdateTest
     {
-        private KundeManager target;
-        private KundeManager Target => target ?? (target = new KundeManager());
+        private KundeManager _target;
+        private KundeManager Target => _target ?? (_target = new KundeManager());
 
 
         [TestInitialize]
@@ -21,7 +21,12 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateKundeTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            //Update Anna Nass to Anna Wet
+            var anna = Target.Get(1);
+            anna.Nachname = "Wet";
+            Target.Update(anna);
+
+            Assert.AreEqual(Target.Get(1).Nachname, "Wet");
         }
     }
 }

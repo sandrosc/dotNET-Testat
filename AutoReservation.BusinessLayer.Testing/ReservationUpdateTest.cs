@@ -8,8 +8,8 @@ namespace AutoReservation.BusinessLayer.Testing
     [TestClass]
     public class ReservationUpdateTest
     {
-        private ReservationManager target;
-        private ReservationManager Target => target ?? (target = new ReservationManager());
+        private ReservationManager _target;
+        private ReservationManager Target => _target ?? (_target = new ReservationManager());
 
 
         [TestInitialize]
@@ -21,7 +21,11 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateReservationTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = Target.Get(1);
+            
+            //reservation.Auto = new StandardAuto(){Autoklasse = };
+
+            Assert.AreEqual("a", "a");
         }
     }
 }

@@ -8,8 +8,8 @@ namespace AutoReservation.BusinessLayer.Testing
     [TestClass]
     public class ReservationDateRangeTest
     {
-        private ReservationManager target;
-        private ReservationManager Target => target ?? (target = new ReservationManager());
+        private ReservationManager _target;
+        private ReservationManager Target => _target ?? (_target = new ReservationManager());
 
 
         [TestInitialize]

@@ -14,7 +14,7 @@ namespace AutoReservation.TestEnvironment
     {
         public static void InitializeTestData()
         {
-            using (AutoReservationContext context = new AutoReservationContext())
+            using (var context = new AutoReservationContext())
             {
                 var luxusklasseAutoTableName = context.GetTableName<LuxusklasseAuto>();
                 var mittelklasseAutoTableName = context.GetTableName<MittelklasseAuto>();
