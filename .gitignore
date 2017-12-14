@@ -3,3 +3,5 @@
 *.cache
 *.ide
 AutoReservation.sln.DotSettings.user
+**/sqlite3/
+/.vs/
