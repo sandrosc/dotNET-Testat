@@ -79,13 +79,13 @@ namespace AutoReservation.BusinessLayer.Testing
         [ExpectedException(typeof(InvalidDateRangeException))]
         public void AlmostReasonableDateRange()
         {
-            //12 hour long reservation
+            //23 hours 59 minutes and 59 seconds long reservation
             var reservation = new Reservation
             {
                 AutoId = 1,
                 KundeId = 2,
-                Von = new DateTime(2020, 02, 1, 0, 0, 0),
-                Bis = new DateTime(2020, 02, 1, 23, 59, 59)
+                Von = new DateTime(2020, 02, 1, 12, 0, 0),
+                Bis = new DateTime(2020, 02, 2, 11, 59, 59)
             };
             Target.Add(reservation);
         }
