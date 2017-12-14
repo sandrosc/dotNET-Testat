@@ -2,6 +2,7 @@
 using AutoReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using AutoReservation.BusinessLayer.Exceptions;
 
 namespace AutoReservation.BusinessLayer.Testing
 {
@@ -19,33 +20,74 @@ namespace AutoReservation.BusinessLayer.Testing
         }
 
         [TestMethod]
-        public void ScenarioOkay01Test()
+        public void DateRangeVeryLarge()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = new Reservation
+            {
+                AutoId = 1,
+                KundeId = 2,
+                Von = new DateTime(2020, 02, 1),
+                Bis = new DateTime(2020, 12, 1)
+            };
+            Target.Add(reservation);
         }
 
         [TestMethod]
-        public void ScenarioOkay02Test()
+        public void DateRangeVerySmall()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = new Reservation
+            {
+                AutoId = 1,
+                KundeId = 2,
+                Von = new DateTime(2020, 02, 1),
+                Bis = new DateTime(2020, 02, 2)
+            };
+            Target.Add(reservation);
         }
 
         [TestMethod]
-        public void ScenarioNotOkay01Test()
+        [ExpectedException(typeof(InvalidDateRangeException))]
+        public void VeryVerySmallDateRange()
         {
-            Assert.Inconclusive("Test not implemented.");
+            //one second long reservation
+            var reservation = new Reservation
+            {
+                AutoId = 1,
+                KundeId = 2,
+                Von = new DateTime(2020, 02, 1, 0, 0, 0),
+                Bis = new DateTime(2020, 02, 1, 0, 0, 1)
+            };
+            Target.Add(reservation);
         }
 
         [TestMethod]
-        public void ScenarioNotOkay02Test()
+        [ExpectedException(typeof(InvalidDateRangeException))]
+        public void VerySmallDateRange()
         {
-            Assert.Inconclusive("Test not implemented.");
+            //12 hour long reservation
+            var reservation = new Reservation
+            {
+                AutoId = 1,
+                KundeId = 2,
+                Von = new DateTime(2020, 02, 1, 0, 0, 0),
+                Bis = new DateTime(2020, 02, 1, 12, 0, 0)
+            };
+            Target.Add(reservation);
         }
 
         [TestMethod]
-        public void ScenarioNotOkay03Test()
+        [ExpectedException(typeof(InvalidDateRangeException))]
+        public void AlmostReasonableDateRange()
         {
-            Assert.Inconclusive("Test not implemented.");
+            //12 hour long reservation
+            var reservation = new Reservation
+            {
+                AutoId = 1,
+                KundeId = 2,
+                Von = new DateTime(2020, 02, 1, 0, 0, 0),
+                Bis = new DateTime(2020, 02, 1, 23, 59, 59)
+            };
+            Target.Add(reservation);
         }
     }
 }
