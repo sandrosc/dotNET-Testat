@@ -314,15 +314,13 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void CheckAvailabilityIsTrueTest()
         {
-            // Assert.IsTrue(Target.IsAutoAvaible(1, new DateTime(2021, 01, 01), new DateTime(2021, 01, 10)));
-            Assert.Inconclusive("Test not implemented.");
+            Assert.IsTrue(Target.IsAutoAvailable(1, new DateTime(2021, 01, 01), new DateTime(2021, 01, 10)));
         }
 
         [TestMethod]
         public void CheckAvailabilityIsFalseTest()
         {
-            // Assert.IsFalse(Target.IsAutoAvaible(1, new DateTime(2020, 01, 10), new DateTime(2020, 01, 20)));
-            Assert.Inconclusive("Test not implemented.");
+            Assert.IsFalse(Target.IsAutoAvailable(1, new DateTime(2020, 01, 10), new DateTime(2020, 01, 20)));
         }
 
         #endregion

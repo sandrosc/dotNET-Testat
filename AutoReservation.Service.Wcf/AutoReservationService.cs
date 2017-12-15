@@ -70,10 +70,10 @@ namespace AutoReservation.Service.Wcf
             }
         }
 
-        public bool IsAutoAvaible(int id)
+        public bool IsAutoAvailable(int id, DateTime von, DateTime bis)
         {
             WriteActualMethod();
-            return _autoManager.Get(id) != null;
+            return _reservationManager.AutoIsAvailable(id, von, bis);
         }
 
         #endregion

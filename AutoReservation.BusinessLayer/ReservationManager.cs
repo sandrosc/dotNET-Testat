@@ -1,3 +1,4 @@
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -70,6 +71,19 @@ namespace AutoReservation.BusinessLayer
             return context.Reservationen
                 .Where(r => r.AutoId == reservation.AutoId && r.ReservationsNr != reservation.ReservationsNr)
                 .All(r => r.Bis <= reservation.Von || r.Von >= reservation.Bis);
+        }
+
+        public bool AutoIsAvailable(int id, DateTime von, DateTime bis)
+        {
+            using (var context = new AutoReservationContext())
+            {
+                return AutoIsAvailable(context, new Reservation
+                {
+                    AutoId = id,
+                    Von = von,
+                    Bis = bis
+                });
+            }
         }
     }
 }
