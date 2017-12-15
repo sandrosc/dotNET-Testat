@@ -20,7 +20,7 @@ namespace AutoReservation.BusinessLayer
             return new OptimisticConcurrencyException<T>($"Update {typeof(T).Name}: Concurrency-Fehler", dbEntity);
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             using (var context = new AutoReservationContext())
             {
@@ -28,24 +28,22 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             using (var context = new AutoReservationContext())
             {
-                context.Set<T>().Add(entity);
+                context.Entry(entity).State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             using (var context = new AutoReservationContext())
             {
                 try
                 {
-                    context.Set<T>().Attach(entity);
-                    var entry = context.Entry(entity);
-                    entry.State = EntityState.Modified;
+                    context.Entry(entity).State = EntityState.Modified;
                     context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -55,7 +53,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(T entity)
         {
             using (var context = new AutoReservationContext())
             {
@@ -71,7 +69,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public List<T> GetList()
+        public virtual List<T> GetList()
         {
             using (var context = new AutoReservationContext())
             {

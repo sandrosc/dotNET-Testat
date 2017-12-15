@@ -1,15 +1,14 @@
-﻿using AutoReservation.Dal.Entities;
+﻿using System;
 using AutoReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace AutoReservation.BusinessLayer.Testing
 {
     [TestClass]
     public class ReservationUpdateTest
     {
-        private ReservationManager target;
-        private ReservationManager Target => target ?? (target = new ReservationManager());
+        private ReservationManager _target;
+        private ReservationManager Target => _target ?? (_target = new ReservationManager());
 
 
         [TestInitialize]
@@ -21,7 +20,14 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateReservationTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = Target.Get(1);
+            reservation.AutoId = 2;
+            reservation.Von = new DateTime(2020, 02, 10);
+            reservation.Bis = new DateTime(2020, 02, 12);
+
+            Target.Update(reservation);
+
+            Assert.AreEqual(2, Target.Get(1).AutoId);
         }
     }
 }

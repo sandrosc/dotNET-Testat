@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace AutoReservation.Dal.Entities
 {
@@ -28,19 +26,11 @@ namespace AutoReservation.Dal.Entities
 		public byte[] RowVersion { get; set; }
 
 		[ForeignKey("AutoId")]
-		public virtual Auto Auto { get; set; }
+        public virtual Auto Auto { get; set; }
 
 		[ForeignKey("KundeId")]
 		public virtual Kunde Kunde { get; set; }
 
-		public bool DateRangeIsValid()
-		{
-			return (Von < Bis && (Bis - Von).TotalDays >= 1);
-		}
-
-		public bool AutoIsAvailable()
-		{
-			return Auto.Reservationen.Any(r => r != this && r.Von < Bis && r.Bis > Von);
-		}
+        public bool DateRangeIsValid => (Von < Bis && (Bis - Von).TotalDays >= 1);
 	}
 }
