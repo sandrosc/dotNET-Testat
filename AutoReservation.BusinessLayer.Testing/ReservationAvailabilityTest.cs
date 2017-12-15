@@ -19,7 +19,7 @@ namespace AutoReservation.BusinessLayer.Testing
         }
 
         [TestMethod]
-        public void ScenarioOkay01Test()
+        public void ReservationEndsJustBeforeAnother()
         {
             var reservation = new Reservation
             {
@@ -32,7 +32,7 @@ namespace AutoReservation.BusinessLayer.Testing
         }
 
         [TestMethod]
-        public void ScenarioOkay02Test()
+        public void ReservationStartsJustAfterAnother()
         {
             var reservation = new Reservation
             {

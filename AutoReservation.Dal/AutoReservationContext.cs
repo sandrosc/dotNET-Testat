@@ -41,10 +41,10 @@ namespace AutoReservation.Dal
         {
             base.OnModelCreating(modelBuilder);
 
-            // Set up hierarchical mapping in fluent API
-            //      Remarks:
-            //      This could not be done using attributes on business entities
-            //      since the discriminator (AutoKlasse) must not be part of the entity.
+            modelBuilder.Entity<Auto>()
+                .Map<LuxusklasseAuto>(auto => auto.Requires("AutoKlasse").HasValue(0))
+                .Map<MittelklasseAuto>(auto => auto.Requires("AutoKlasse").HasValue(1))
+                .Map<StandardAuto>(auto => auto.Requires("AutoKlasse").HasValue(2));
         }
     }
 }

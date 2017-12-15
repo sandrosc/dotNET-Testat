@@ -19,16 +19,10 @@ namespace AutoReservation.Dal.Entities
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        [Required]
-        public virtual int Autoklasse { get; set; }
-
         public virtual ICollection<Reservation> Reservationen { get; set; }
     }
 
-    public class StandardAuto : Auto
-    {
-        //public override int Autoklasse => 
-    }
+    public class StandardAuto : Auto { }
 
     public class LuxusklasseAuto : Auto
     {

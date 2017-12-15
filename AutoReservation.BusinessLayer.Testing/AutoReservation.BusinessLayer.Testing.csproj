@@ -76,6 +76,7 @@
     <Compile Include="..\Assets\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="AutoKlasseTest.cs" />
     <Compile Include="ReservationDateRangeTest.cs" />
     <Compile Include="ReservationAvailabilityTest.cs" />
     <Compile Include="ReservationUpdateTest.cs" />
