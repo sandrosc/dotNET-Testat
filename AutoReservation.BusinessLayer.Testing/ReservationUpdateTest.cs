@@ -21,6 +21,7 @@ namespace AutoReservation.BusinessLayer.Testing
         public void UpdateReservationTest()
         {
             var reservation = Target.Get(1);
+            reservation.Auto = new AutoManager().Get(2);
             reservation.AutoId = 2;
             reservation.Von = new DateTime(2020, 02, 10);
             reservation.Bis = new DateTime(2020, 02, 12);
