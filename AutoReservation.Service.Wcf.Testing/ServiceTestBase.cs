@@ -222,15 +222,29 @@ namespace AutoReservation.Service.Wcf.Testing
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<Kunde>>))]
         public void UpdateKundeWithOptimisticConcurrencyTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var original = Target.GetKunde(1);
+            original.Nachname = "Mozart";
+            var modified = Target.GetKunde(1);
+            modified.Nachname = "Fred";
+
+            Target.UpdateKunde(modified);
+            Target.UpdateKunde(original);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<Reservation>>))]
         public void UpdateReservationWithOptimisticConcurrencyTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var original = Target.GetReservation(1);
+            original.Bis = new DateTime(2018, 10, 10);
+            var modified = Target.GetReservation(1);
+            modified.Bis = new DateTime(2018, 11, 11);
+
+            Target.UpdateReservation(modified);
+            Target.UpdateReservation(original);
         }
 
         #endregion
@@ -238,27 +252,59 @@ namespace AutoReservation.Service.Wcf.Testing
         #region Insert / update invalid time range
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<InvalidDateRangeFault>))]
         public void InsertReservationWithInvalidDateRangeTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = new ReservationDto
+            {
+                Bis = new DateTime(2017, 09, 27),
+                Von = new DateTime(2017, 10, 27),
+                Auto = Target.GetAuto(1),
+                Kunde = Target.GetKunde(1)
+            };
+            Target.AddReservation(reservation);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<UnavailableAutoFault>))]
         public void InsertReservationWithAutoNotAvailableTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = new ReservationDto
+            {
+                Bis = new DateTime(2017, 09, 27),
+                Von = new DateTime(2017, 08, 27),
+                Auto = Target.GetAuto(1),
+                Kunde = Target.GetKunde(1)
+            };
+            Target.AddReservation(reservation);
+
+            var reservation2 = new ReservationDto
+            {
+                Bis = new DateTime(2017, 10, 27),
+                Von = new DateTime(2017, 08, 27),
+                Auto = Target.GetAuto(1),
+                Kunde = Target.GetKunde(1)
+            };
+            Target.AddReservation(reservation2);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<InvalidDateRangeFault>))]
         public void UpdateReservationWithInvalidDateRangeTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = Target.GetReservation(1);
+            reservation.Bis = new DateTime(2017, 09, 27);
+            reservation.Von = new DateTime(2017, 10, 27);
+            Target.UpdateReservation(reservation);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException<UnavailableAutoFault>))]
         public void UpdateReservationWithAutoNotAvailableTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var reservation = Target.GetReservation(1);
+            reservation.Auto = Target.GetAuto(2);
+            Target.UpdateReservation(reservation);
         }
 
         #endregion
@@ -268,12 +314,14 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void CheckAvailabilityIsTrueTest()
         {
+            // Assert.IsTrue(Target.IsAutoAvaible(1, new DateTime(2021, 01, 01), new DateTime(2021, 01, 10)));
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
         public void CheckAvailabilityIsFalseTest()
         {
+            // Assert.IsFalse(Target.IsAutoAvaible(1, new DateTime(2020, 01, 10), new DateTime(2020, 01, 20)));
             Assert.Inconclusive("Test not implemented.");
         }
 
