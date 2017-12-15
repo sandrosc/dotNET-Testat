@@ -239,9 +239,9 @@ namespace AutoReservation.Service.Wcf.Testing
         public void UpdateReservationWithOptimisticConcurrencyTest()
         {
             var original = Target.GetReservation(1);
-            original.Bis = new DateTime(2018, 10, 10);
+            original.Bis = new DateTime(2021, 10, 10);
             var modified = Target.GetReservation(1);
-            modified.Bis = new DateTime(2018, 11, 11);
+            modified.Bis = new DateTime(2021, 11, 11);
 
             Target.UpdateReservation(modified);
             Target.UpdateReservation(original);

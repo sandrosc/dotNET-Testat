@@ -105,9 +105,9 @@ namespace AutoReservation.Service.Wcf
             {
                 _kundeManager.Update(kunde.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Auto>)
+            catch (OptimisticConcurrencyException<Kunde>)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
+                throw new FaultException<OptimisticConcurrencyFault<Kunde>>(new OptimisticConcurrencyFault<Kunde>()) { };
             }
         }
 
@@ -118,9 +118,9 @@ namespace AutoReservation.Service.Wcf
             {
                 _kundeManager.Remove(kunde.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Auto>)
+            catch (OptimisticConcurrencyException<Kunde>)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
+                throw new FaultException<OptimisticConcurrencyFault<Kunde>>(new OptimisticConcurrencyFault<Kunde>()) { };
             }
         }
 
@@ -143,7 +143,22 @@ namespace AutoReservation.Service.Wcf
         public void AddReservation(ReservationDto reservation)
         {
             WriteActualMethod();
-            _reservationManager.Add(reservation.ConvertToEntity());
+            try
+            {
+                _reservationManager.Add(reservation.ConvertToEntity());
+            }
+            catch (OptimisticConcurrencyException<Reservation>)
+            {
+                throw new FaultException<OptimisticConcurrencyFault<Reservation>>(new OptimisticConcurrencyFault<Reservation>()) { };
+            }
+            catch (InvalidDateRangeException)
+            {
+                throw new FaultException<InvalidDateRangeFault>(new InvalidDateRangeFault()) { };
+            }
+            catch (UnavailableAutoException)
+            {
+                throw new FaultException<UnavailableAutoFault>(new UnavailableAutoFault()) { };
+            }
         }
 
         public void UpdateReservation(ReservationDto reservation)
@@ -153,9 +168,9 @@ namespace AutoReservation.Service.Wcf
             {
                 _reservationManager.Update(reservation.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Auto>)
+            catch (OptimisticConcurrencyException<Reservation>)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
+                throw new FaultException<OptimisticConcurrencyFault<Reservation>>(new OptimisticConcurrencyFault<Reservation>()) { };
             }
             catch (InvalidDateRangeException)
             {
@@ -174,17 +189,9 @@ namespace AutoReservation.Service.Wcf
             {
                 _reservationManager.Remove(reservation.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Auto>)
+            catch (OptimisticConcurrencyException<Reservation>)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Auto>>(new OptimisticConcurrencyFault<Auto>()) { };
-            }
-            catch (InvalidDateRangeException)
-            {
-                throw new FaultException<InvalidDateRangeFault>(new InvalidDateRangeFault()) { };
-            }
-            catch (UnavailableAutoException)
-            {
-                throw new FaultException<UnavailableAutoFault>(new UnavailableAutoFault()) { };
+                throw new FaultException<OptimisticConcurrencyFault<Reservation>>(new OptimisticConcurrencyFault<Reservation>()) { };
             }
         }
 

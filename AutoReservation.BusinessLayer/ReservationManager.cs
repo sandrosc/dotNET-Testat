@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using AutoReservation.BusinessLayer.Exceptions;
 using AutoReservation.Dal;
@@ -9,6 +10,17 @@ namespace AutoReservation.BusinessLayer
     public class ReservationManager
         : ManagerBase<Reservation>
     {
+        public override Reservation Get(int id)
+        {
+            using (var context = new AutoReservationContext())
+            {
+                return context.Reservationen
+                    .Include(r => r.Auto)
+                    .Include(r => r.Kunde)
+                    .FirstOrDefault(r => r.ReservationsNr == id);
+            }
+        }
+
         public override void Add(Reservation reservation)
         {
             using (var context = new AutoReservationContext())
@@ -24,8 +36,15 @@ namespace AutoReservation.BusinessLayer
             using (var context = new AutoReservationContext())
             {
                 if (!ModificationIsValid(context, reservation)) return;
-                context.Entry(reservation).State = EntityState.Modified;
-                context.SaveChanges();
+                try
+                {
+                    context.Entry(reservation).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw CreateOptimisticConcurrencyException(context, reservation);
+                }
             }
         }
 
