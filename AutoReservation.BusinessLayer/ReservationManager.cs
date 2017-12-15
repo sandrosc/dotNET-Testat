@@ -12,20 +12,9 @@ namespace AutoReservation.BusinessLayer
     {
         public override void Add(Reservation reservation)
         {
-            if (!reservation.DateRangeIsValid)
-            {
-                throw new InvalidDateRangeException(
-                    "Datumsbereich erfüllt die Vorgabe, nach der eine Reservation mindestens einen Tag dauert, nicht.",
-                    reservation);
-            }
-
             using (var context = new AutoReservationContext())
             {
-                if (!AutoIsAvailable(context, reservation))
-                {
-                    throw new UnavailableAutoException(
-                        "Das Auto ist zu diesem Zeitpunkt leider nicht verfügbar.", reservation.Auto);
-                }
+                if (!ModificationIsValid(context, reservation)) return;
                 context.Entry(reservation).State = EntityState.Added;
                 context.SaveChanges();
             }
@@ -33,7 +22,29 @@ namespace AutoReservation.BusinessLayer
 
         public override void Update(Reservation reservation)
         {
-            
+            using (var context = new AutoReservationContext())
+            {
+                if (!ModificationIsValid(context, reservation)) return;
+                context.Entry(reservation).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        private static bool ModificationIsValid(AutoReservationContext context, Reservation reservation)
+        {
+            if (!reservation.DateRangeIsValid)
+            {
+                throw new InvalidDateRangeException(
+                    "Datumsbereich erfüllt die Vorgabe, nach der eine Reservation mindestens einen Tag dauert, nicht.",
+                    reservation);
+            }
+            if (!AutoIsAvailable(context, reservation))
+            {
+                throw new UnavailableAutoException(
+                    "Das Auto ist zu diesem Zeitpunkt leider nicht verfügbar.", reservation.Auto);
+            }
+
+            return true;
         }
 
         private static bool AutoIsAvailable(AutoReservationContext context, Reservation reservation)
