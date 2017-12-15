@@ -1,4 +1,5 @@
-﻿using AutoReservation.Common.DataTransferObjects;
+﻿using System;
+using AutoReservation.Common.DataTransferObjects;
 using System.Collections.Generic;
 using System.ServiceModel;
 using AutoReservation.Common.DataTransferObjects.Faults;
@@ -27,7 +28,7 @@ namespace AutoReservation.Common.Interfaces
         void RemoveAuto(AutoDto auto);
 
         [OperationContract]
-        bool IsAutoAvaible(int id);
+        bool IsAutoAvailable(int id, DateTime von, DateTime bis);
 
         #endregion
 
