@@ -23,5 +23,17 @@ namespace AutoReservation.GUI
         {
             DataGridAutos.ItemsSource = AutoReservationService.GetAutos();
         }
+
+        private void AddAuto_OnClick(object sender, RoutedEventArgs e)
+        {
+            var addAutoWindow = new AddAutoWindow();
+            addAutoWindow.Show();
+        }
+
+        private void AddKunde_OnClick(object sender, RoutedEventArgs e)
+        {
+            var addKundeWindow = new AddKundeWindow();
+            addKundeWindow.Show();
+        }
     }
 }

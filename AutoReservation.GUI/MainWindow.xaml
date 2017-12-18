@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AutoReservation.GUI"
         mc:Ignorable="d"
         Title="AutoReservation" Height="350" Width="525">
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl Margin="10, 10, 10, 0">
             <TabItem Header="Autos">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Autos:</TextBlock>
@@ -19,9 +22,13 @@
             <TabItem Header="Kunden">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Kunden:</TextBlock>
-                    <DataGrid Name="DataGridKunden"></DataGrid>
+                    <DataGrid  Name="DataGridKunden"></DataGrid>
                 </DockPanel>
             </TabItem>
         </TabControl>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Name="AddAuto" Click="AddAuto_OnClick" Margin="10" Padding="10,4">Auto hinzufügen</Button>
+            <Button Name="AddKunde" Click="AddKunde_OnClick" Margin="0,10,10, 10" Padding="10,4">Kunde hinzufügen</Button>
+        </StackPanel>
     </Grid>
 </Window>

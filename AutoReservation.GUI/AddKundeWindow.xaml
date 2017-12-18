@@ -1,0 +1,28 @@
+﻿<Window x:Class="AutoReservation.GUI.AddKundeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Kunde hinzufügen" Height="185.958" Width="300">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">Vorname</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="Vorname" Padding="4"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0">Nachname</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="Nachname" Padding="4"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0">Geburtstagdaten</Label>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="Geburtstagsdatum" Padding="4"></DatePicker>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="AddKunde" Click="AddKunde_Click">Kunde hinzufügen</Button>
+    </Grid>
+</Window>

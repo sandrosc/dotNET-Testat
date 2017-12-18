@@ -1,0 +1,36 @@
+﻿<Window x:Class="AutoReservation.GUI.AddAutoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoReservation.GUI"
+        mc:Ignorable="d"
+        Title="Auto hinzufügen" Height="225.636" Width="300">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">Marke</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="Marke" Padding="4"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0">Klasse</Label>
+        <ComboBox Grid.Row="1" Grid.Column="1" Name="Klasse"  Padding="4">
+            <ComboBoxItem>Luxusklasse</ComboBoxItem>
+            <ComboBoxItem>Mittelklasse</ComboBoxItem>
+            <ComboBoxItem>Standard</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0">Tagestarif</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="Tagestarif"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0">Basistarif</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="Basistarif"></TextBox>
+        <Button Grid.Row="5" Grid.ColumnSpan="2">Auto hinzufügen</Button>
+    </Grid>
+</Window>
