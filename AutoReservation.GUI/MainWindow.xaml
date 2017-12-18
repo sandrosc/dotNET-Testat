@@ -1,0 +1,27 @@
+﻿<Window x:Class="AutoReservation.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoReservation.GUI"
+        mc:Ignorable="d"
+        Title="AutoReservation" Height="350" Width="525">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Autos">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top">Autos:</TextBlock>
+                    <DataGrid Name="DataGridAutos">
+
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Kunden">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top">Kunden:</TextBlock>
+                    <DataGrid Name="DataGridKunden"></DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
