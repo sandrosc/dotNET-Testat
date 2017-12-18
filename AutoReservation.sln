@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoReservation.Common", "AutoReservation.Common\AutoReservation.Common.csproj", "{22972439-3FFF-41D2-B5AE-6C06ABC66EB4}"
 EndProject
@@ -37,8 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoReservation.GUI", "Auto
 		{AB98AC63-032F-4050-9755-1E2235E9F1DD} = {AB98AC63-032F-4050-9755-1E2235E9F1DD}
 		{1F53D0EF-0521-4155-835C-C2A04D9FE5DE} = {1F53D0EF-0521-4155-835C-C2A04D9FE5DE}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoReservation.Gui.Testing", "UnitTestProject1\AutoReservation.Gui.Testing.csproj", "{694FD5F9-C940-482E-9604-570451D36BD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,24 +189,6 @@ Global
 		{EAE8BF53-8BE3-4026-A10A-CF302A71B2F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EAE8BF53-8BE3-4026-A10A-CF302A71B2F9}.Release|x86.ActiveCfg = Release|Any CPU
 		{EAE8BF53-8BE3-4026-A10A-CF302A71B2F9}.Release|x86.Build.0 = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Debug|x86.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|Mixed Platforms.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|x86.ActiveCfg = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Default|x86.Build.0 = Debug|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|x86.ActiveCfg = Release|Any CPU
-		{694FD5F9-C940-482E-9604-570451D36BD7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,7 +197,6 @@ Global
 		{85305EF6-3B4F-4B7C-B39D-780FA9950156} = {8C52366D-F400-4ADF-B894-082CA580BECA}
 		{943E927C-BFCD-4DD6-8DD3-AECCF5F7BC4B} = {8C52366D-F400-4ADF-B894-082CA580BECA}
 		{0BECFAB3-1408-4005-A38A-6C4284C93658} = {8C52366D-F400-4ADF-B894-082CA580BECA}
-		{694FD5F9-C940-482E-9604-570451D36BD7} = {8C52366D-F400-4ADF-B894-082CA580BECA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67C66EBE-1979-4B45-AEE3-F05EA6FEC242}

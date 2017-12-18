@@ -18,11 +18,11 @@
             <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0">Vorname</Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="Vorname" Padding="4"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Vorname}" Padding="4"></TextBox>
         <Label Grid.Row="1" Grid.Column="0">Nachname</Label>
         <TextBox Grid.Row="1" Grid.Column="1" Name="Nachname" Padding="4"></TextBox>
-        <Label Grid.Row="2" Grid.Column="0">Geburtstagdaten</Label>
+        <Label Grid.Row="2" Grid.Column="0">Geburtstagdatum</Label>
         <DatePicker Grid.Row="2" Grid.Column="1" Name="Geburtstagsdatum" Padding="4"></DatePicker>
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="AddKunde" Click="AddKunde_Click">Kunde hinzufügen</Button>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="AddKunde" Command="{Binding }">Kunde hinzufügen</Button>
     </Grid>
 </Window>
