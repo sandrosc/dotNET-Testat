@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace AutoReservation.Gui.ViewModels
@@ -23,12 +24,6 @@ namespace AutoReservation.Gui.ViewModels
 
             return true;
         }
-
-        //protected bool SetProperty<T>(ref T dto, T field, T value)
-        //{
-        //    
-        //}
-    
 
         protected void OnPropertyChanged(string name = null)
         {
