@@ -1,39 +1,30 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using AutoReservation.GUI.ViewModels;
 using AutoReservation.Service.Wcf;
 
 namespace AutoReservation.GUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private AutoReservationService _autoReservationService;
-
-        private AutoReservationService AutoReservationService =>
-            _autoReservationService ?? (_autoReservationService = new AutoReservationService());
+        private static readonly AutoReservationService AutoReservationService = new AutoReservationService();
 
         public MainWindow()
         {
             InitializeComponent();
-            UpdateLists();
-        }
-
-        private void UpdateLists()
-        {
-            DataGridAutos.ItemsSource = AutoReservationService.GetAutos();
+            DataContext = new MainViewModel(AutoReservationService);
         }
 
         private void AddAuto_OnClick(object sender, RoutedEventArgs e)
         {
             var addAutoWindow = new AddAutoWindow();
-            addAutoWindow.Show();
+            addAutoWindow.ShowDialog();
         }
 
         private void AddKunde_OnClick(object sender, RoutedEventArgs e)
         {
-            var addKundeWindow = new AddKundeWindow();
-            addKundeWindow.Show();
+            var addKundeWindow = new AddKundeWindow(AutoReservationService);
+            addKundeWindow.ShowDialog();
         }
     }
 }

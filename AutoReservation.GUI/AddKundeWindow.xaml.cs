@@ -1,14 +1,14 @@
-﻿using System.Windows;
-using AutoReservation.GUI.ViewModels;
+﻿using AutoReservation.GUI.ViewModels;
+using AutoReservation.Service.Wcf;
 
 namespace AutoReservation.GUI
 {
-    public partial class AddKundeWindow : Window
+    public partial class AddKundeWindow
     {
-        public AddKundeWindow()
+        public AddKundeWindow(AutoReservationService service)
         {
             InitializeComponent();
-            DataContext = new KundeViewModel();
+            DataContext = new KundeViewModel(this, service);
         }
 
         //private void AddKunde_Click(object sender, RoutedEventArgs e)

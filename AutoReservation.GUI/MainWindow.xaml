@@ -14,15 +14,13 @@
             <TabItem Header="Autos">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Autos:</TextBlock>
-                    <DataGrid Name="DataGridAutos">
-
-                    </DataGrid>
+                    <DataGrid ItemsSource="{Binding Autos}"></DataGrid>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Kunden">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Kunden:</TextBlock>
-                    <DataGrid  Name="DataGridKunden"></DataGrid>
+                    <DataGrid ItemsSource="{Binding Kunden}"></DataGrid>
                 </DockPanel>
             </TabItem>
         </TabControl>

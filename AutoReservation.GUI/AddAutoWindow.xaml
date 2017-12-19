@@ -31,6 +31,6 @@
         <TextBox Grid.Row="2" Grid.Column="1" Name="Tagestarif"></TextBox>
         <Label Grid.Row="3" Grid.Column="0">Basistarif</Label>
         <TextBox Grid.Row="3" Grid.Column="1" Name="Basistarif"></TextBox>
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Command="{Binding Save}">Auto hinzufügen</Button>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Command="{Binding SaveCommand}">Auto hinzufügen</Button>
     </Grid>
 </Window>
