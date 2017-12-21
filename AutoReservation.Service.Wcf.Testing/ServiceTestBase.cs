@@ -209,7 +209,7 @@ namespace AutoReservation.Service.Wcf.Testing
         #region Update with optimistic concurrency violation
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<Auto>>))]
+        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<AutoDto>>))]
         public void UpdateAutoWithOptimisticConcurrencyTest()
         {
             var original = Target.GetAuto(1);
@@ -218,11 +218,20 @@ namespace AutoReservation.Service.Wcf.Testing
             modified.Marke = "Z-T Star";
 
             Target.UpdateAuto(modified);
-            Target.UpdateAuto(original);
+            try
+            {
+                Target.UpdateAuto(original);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<Kunde>>))]
+        [ExpectedException(typeof(FaultException<OptimisticConcurrencyFault<KundeDto>>))]
         public void UpdateKundeWithOptimisticConcurrencyTest()
         {
             var original = Target.GetKunde(1);
@@ -231,7 +240,16 @@ namespace AutoReservation.Service.Wcf.Testing
             modified.Nachname = "Fred";
 
             Target.UpdateKunde(modified);
-            Target.UpdateKunde(original);
+            try
+            {
+                Target.UpdateKunde(original);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [TestMethod]

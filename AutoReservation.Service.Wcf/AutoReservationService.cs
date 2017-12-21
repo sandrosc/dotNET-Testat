@@ -105,9 +105,12 @@ namespace AutoReservation.Service.Wcf
             {
                 _kundeManager.Update(kunde.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Kunde>)
+            catch (OptimisticConcurrencyException<Kunde> e)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Kunde>>(new OptimisticConcurrencyFault<Kunde>()) { };
+                throw new FaultException<OptimisticConcurrencyFault<KundeDto>>(
+                        new OptimisticConcurrencyFault<KundeDto>()
+                    )
+                    { };
             }
         }
 
@@ -118,9 +121,11 @@ namespace AutoReservation.Service.Wcf
             {
                 _kundeManager.Remove(kunde.ConvertToEntity());
             }
-            catch (OptimisticConcurrencyException<Kunde>)
+            catch (OptimisticConcurrencyException<Kunde> e)
             {
-                throw new FaultException<OptimisticConcurrencyFault<Kunde>>(new OptimisticConcurrencyFault<Kunde>()) { };
+                throw new FaultException<OptimisticConcurrencyFault<KundeDto>>(
+                    new OptimisticConcurrencyFault<KundeDto>()
+                ) { };
             }
         }
 

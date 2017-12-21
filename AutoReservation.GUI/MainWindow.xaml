@@ -14,13 +14,27 @@
             <TabItem Header="Autos">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Autos:</TextBlock>
-                    <DataGrid ItemsSource="{Binding Autos}"></DataGrid>
+                    <DataGrid ItemsSource="{Binding Autos}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Marke"  Width="*" Binding="{Binding Path=Marke}" />
+                            <DataGridTextColumn Header="Tagestarif"  Width="*" Binding="{Binding Path=Tagestarif}" />
+                            <DataGridTextColumn Header="Basistarif"  Width="*" Binding="{Binding Path=Basistarif}" />
+                            <DataGridTextColumn Header="Klasse"  Width="*" Binding="{Binding Path=Klasse}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Kunden">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Kunden:</TextBlock>
-                    <DataGrid ItemsSource="{Binding Kunden}"></DataGrid>
+                    <DataGrid ItemsSource="{Binding Kunden}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Nachname" Width="*" Binding="{Binding Path=Nachname}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Vorname" Width="*" Binding="{Binding Path=Vorname}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Geburtsdatum" Width="*" Binding="{Binding Path=Geburtsdatum}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
         </TabControl>

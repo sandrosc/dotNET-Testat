@@ -8,8 +8,8 @@ namespace AutoReservation.GUI.ViewModels
     public class MainViewModel:BaseViewModel
     {
         private readonly AutoReservationService _service;
-        public ObservableCollection<AutoDto> Autos = new ObservableCollection<AutoDto>();
-        public ObservableCollection<KundeDto> Kunden = new ObservableCollection<KundeDto>();
+        public ObservableCollection<AutoDto> Autos { get; } = new ObservableCollection<AutoDto>();
+        public ObservableCollection<KundeDto> Kunden { get; } = new ObservableCollection<KundeDto>();
 
         public MainViewModel(AutoReservationService service)
         {
@@ -21,8 +21,16 @@ namespace AutoReservation.GUI.ViewModels
         
         private void UpdateLists()
         {
-            Autos = new ObservableCollection<AutoDto>(_service.GetAutos());
-            Kunden = new ObservableCollection<KundeDto>(_service.GetKunden());
+            Autos.Clear();
+            foreach (var auto in _service.GetAutos())
+            {
+                Autos.Add(auto);
+            }
+            Kunden.Clear();
+            foreach (var kunde in _service.GetKunden())
+            {
+                Kunden.Add(kunde);
+            }
         }
     }
 }
