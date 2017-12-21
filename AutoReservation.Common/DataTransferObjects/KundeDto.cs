@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AutoReservation.Common.DataTransferObjects
 {
     [DataContract]
-    public class KundeDto : IDto
+    public class KundeDto
     {
         [DataMember]
         public int Id { get; set; }
