@@ -29,6 +29,7 @@ namespace AutoReservation.GUI.ViewModels
             AddKundeCommand = new RelayCommand(AddKunde);
             AddReservationCommand = new RelayCommand(AddReservation);
 
+            UpdateLists();
             //update lists every 5 seconds
             DispatcherTimer = new DispatcherTimer();
             DispatcherTimer.Tick += UpdateLists;
@@ -54,7 +55,7 @@ namespace AutoReservation.GUI.ViewModels
             addReservationWindow.ShowDialog();
         }
 
-        private void UpdateLists(object sender, EventArgs e)
+        private void UpdateLists(object sender = null, EventArgs e = null)
         {
             Autos.Clear();
             foreach (var auto in _service.GetAutos())

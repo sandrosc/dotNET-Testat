@@ -24,7 +24,6 @@ namespace AutoReservation.GUI.ViewModels
 
         private void Save()
         {
-            _service.AddKunde(KundeDto);
             Task.Run(() =>
             {
                 _service.AddKunde(KundeDto);

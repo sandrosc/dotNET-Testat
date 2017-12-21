@@ -20,17 +20,13 @@
             <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0">Marke</Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="Marke" Padding="4"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Marke}" Padding="4"></TextBox>
         <Label Grid.Row="1" Grid.Column="0">Klasse</Label>
-        <ComboBox Grid.Row="1" Grid.Column="1" Name="Klasse"  Padding="4">
-            <ComboBoxItem>Luxusklasse</ComboBoxItem>
-            <ComboBoxItem>Mittelklasse</ComboBoxItem>
-            <ComboBoxItem>Standard</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding AutoKlasse}" ItemsSource="{Binding AutoKlassen}" Padding="4" />
         <Label Grid.Row="2" Grid.Column="0">Tagestarif</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Name="Tagestarif"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Tagestarif}"></TextBox>
         <Label Grid.Row="3" Grid.Column="0">Basistarif</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Name="Basistarif"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Basistarif}"></TextBox>
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SaveCommand}">Auto hinzufügen</Button>
     </Grid>
 </Window>
