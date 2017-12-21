@@ -42,16 +42,20 @@
                     <TextBlock DockPanel.Dock="Top">Reservationen:</TextBlock>
                     <DataGrid ItemsSource="{Binding Reservationen}" AutoGenerateColumns="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Reservations-Nr." Width="*" Binding="{Binding Path=ReservationsNr}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Von" Width="*" Binding="{Binding Path=Von}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Bis" Width="*" Binding="{Binding Path=Bis}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Auto ID" Width="*" Binding="{Binding Path=AutoId}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kunde ID" Width="*" Binding="{Binding Path=KundeId}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Command="{Binding AddAuto}" Margin="10" Padding="10,4">Auto hinzufügen</Button>
-            <Button Command="{Binding AddKunde}" Margin="0,10,10, 10" Padding="10,4">Kunde hinzufügen</Button>
-            <Button Command="{Binding AddReservation}" Margin="0,10,10, 10" Padding="10,4">Reservation hinzufügen</Button>
+            <Button Command="{Binding AddAutoCommand}" Margin="10" Padding="10,4">Auto hinzufügen</Button>
+            <Button Command="{Binding AddKundeCommand}" Margin="0,10,10, 10" Padding="10,4">Kunde hinzufügen</Button>
+            <Button Command="{Binding AddReservationCommand}" Margin="0,10,10, 10" Padding="10,4">Reservation hinzufügen</Button>
         </StackPanel>
     </Grid>
 </Window>

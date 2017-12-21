@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
 using AutoReservation.Common.DataTransferObjects;
 using AutoReservation.Gui.ViewModels;
 using AutoReservation.Service.Wcf;
@@ -23,7 +25,14 @@ namespace AutoReservation.GUI.ViewModels
         private void Save()
         {
             _service.AddKunde(KundeDto);
-            _view.Close();
+            Task.Run(() =>
+            {
+                _service.AddKunde(KundeDto);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    _view.Close();
+                });
+            });
         }
 
         public string Vorname
