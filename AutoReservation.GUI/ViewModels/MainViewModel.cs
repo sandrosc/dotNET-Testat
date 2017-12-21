@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Threading;
 using AutoReservation.Common.DataTransferObjects;
 using AutoReservation.Gui.ViewModels;
@@ -9,24 +10,24 @@ namespace AutoReservation.GUI.ViewModels
 {
 	public class MainViewModel : BaseViewModel
 	{
-	    public class AutoRow
-	    {
-            public string Marke { get; }
-            public AutoKlasse AutoKlasse { get; }
-            public int Tagestarif  { get; }
-            public int? Basistarif { get; }
+		public class AutoRow
+		{
+			public string Marke { get; }
+			public AutoKlasse AutoKlasse { get; }
+			public int Tagestarif { get; }
+			public int? Basistarif { get; }
 
-            public AutoRow(AutoDto autoDto)
-            {
-                Marke = autoDto.Marke;
-                AutoKlasse = autoDto.AutoKlasse;
-                Tagestarif = autoDto.Tagestarif;
-                if (autoDto.AutoKlasse == AutoKlasse.Luxusklasse)
-                {
-                    Basistarif = autoDto.Basistarif;
-                }
-	        }
-	    }
+			public AutoRow(AutoDto autoDto)
+			{
+				Marke = autoDto.Marke;
+				AutoKlasse = autoDto.AutoKlasse;
+				Tagestarif = autoDto.Tagestarif;
+				if (autoDto.AutoKlasse == AutoKlasse.Luxusklasse)
+				{
+					Basistarif = autoDto.Basistarif;
+				}
+			}
+		}
 
 		private readonly AutoReservationService _service;
 
@@ -37,7 +38,9 @@ namespace AutoReservation.GUI.ViewModels
 		public RelayCommand AddAutoCommand { get; }
 		public RelayCommand AddKundeCommand { get; }
 		public RelayCommand AddReservationCommand { get; }
-		public RelayCommand<int> DeleteKundeCommand { get; }
+		public RelayCommand<int> RemoveKundeCommand { get; }
+		public RelayCommand<int> RemoveAutoCommand { get; }
+		public RelayCommand<int> RemoveReservationCommand { get; }
 
 		private DispatcherTimer DispatcherTimer { get; }
 
@@ -48,7 +51,9 @@ namespace AutoReservation.GUI.ViewModels
 			AddAutoCommand = new RelayCommand(AddAuto);
 			AddKundeCommand = new RelayCommand(AddKunde);
 			AddReservationCommand = new RelayCommand(AddReservation);
-			DeleteKundeCommand = new RelayCommand<Int32>(DeleteKunde);
+			RemoveKundeCommand = new RelayCommand<int>(RemoveKunde);
+			RemoveReservationCommand = new RelayCommand<int>(RemoveReservation);
+			RemoveAutoCommand = new RelayCommand<int>(RemoveAuto);
 
 			UpdateLists();
 			//update lists every 5 seconds
@@ -58,30 +63,44 @@ namespace AutoReservation.GUI.ViewModels
 			DispatcherTimer.Start();
 		}
 
+		private void RemoveKunde(int id)
+		{
+			_service.RemoveKunde(Kunden.FirstOrDefault(k => k.Id == id));
+			UpdateLists();
+		}
+
+		private void RemoveReservation(int id)
+		{
+			_service.RemoveReservation(Reservationen.FirstOrDefault(r => r.ReservationsNr == id));
+			UpdateLists();
+		}
+
+		private void RemoveAuto(int id)
+		{
+			_service.RemoveAuto(Autos.FirstOrDefault(a => a.Id == id));
+			UpdateLists();
+		}
+
+
 		private void AddAuto()
 		{
 			var addAutoWindow = new AddAutoWindow(_service);
 			addAutoWindow.ShowDialog();
-		    UpdateLists();
+			UpdateLists();
 		}
 
-        private void AddKunde()
+		private void AddKunde()
 		{
 			var addKundeWindow = new AddKundeWindow(_service);
 			addKundeWindow.ShowDialog();
-            UpdateLists();
+			UpdateLists();
 		}
 
 		private void AddReservation()
 		{
 			var addReservationWindow = new AddReservationWindow(_service);
 			addReservationWindow.ShowDialog();
-		    UpdateLists();
-		}
-
-        private void DeleteKunde(int id)
-		{
-			System.Console.WriteLine("Wahbadabadaba: " + id);
+			UpdateLists();
 		}
 
 		private void UpdateLists(object sender = null, EventArgs e = null)
@@ -89,7 +108,7 @@ namespace AutoReservation.GUI.ViewModels
 			Autos.Clear();
 			foreach (var auto in _service.GetAutos())
 			{
-				Autos.Add(new AutoRow(auto));
+				Autos.Add(auto);
 			}
 			Kunden.Clear();
 			foreach (var kunde in _service.GetKunden())

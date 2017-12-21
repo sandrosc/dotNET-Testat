@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="AutoReservation" Height="350" Width="525">
+        Title="AutoReservation" Height="350" Width="525"
+        x:Name="HomeWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -17,6 +18,13 @@
                     <DataGrid ItemsSource="{Binding Autos}" AutoGenerateColumns="False" CanUserReorderColumns="False"
                               CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove" CommandParameter="{Binding Id}" Command="{Binding DataContext.RemoveAutoCommand, ElementName=HomeWindow}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Marke" Width="*" Binding="{Binding Path=Marke}" />
                             <DataGridTextColumn Header="Tagestarif" Width="*" Binding="{Binding Path=Tagestarif}" />
                             <DataGridTextColumn Header="Basistarif" Width="*" Binding="{Binding Path=Basistarif}" />
@@ -31,18 +39,17 @@
                     <DataGrid ItemsSource="{Binding Kunden}" AutoGenerateColumns="False" CanUserReorderColumns="False"
                               CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove" CommandParameter="{Binding Id}" Command="{Binding DataContext.RemoveKundeCommand, ElementName=HomeWindow}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}" />
                             <DataGridTextColumn Header="Nachname" Width="*" Binding="{Binding Path=Nachname}" />
                             <DataGridTextColumn Header="Vorname" Width="*" Binding="{Binding Path=Vorname}" />
                             <DataGridTextColumn Header="Geburtsdatum" Width="*" Binding="{Binding Path=Geburtsdatum}" />
-                            <DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Delete" Command="{Binding DeleteKunde}"
-                                                CommandParameter="{Binding Path=Id}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
@@ -54,6 +61,13 @@
                               CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
                               CanUserAddRows="False">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove" CommandParameter="{Binding Id}" Command="{Binding DataContext.RemoveReservationCommand, ElementName=HomeWindow}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Reservations-Nr." Width="*" Binding="{Binding Path=ReservationsNr}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Von" Width="*" Binding="{Binding Path=Von}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Bis" Width="*" Binding="{Binding Path=Bis}"></DataGridTextColumn>
