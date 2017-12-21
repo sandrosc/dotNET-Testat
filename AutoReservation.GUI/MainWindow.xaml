@@ -49,8 +49,9 @@
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Name="AddAuto" Click="AddAuto_OnClick" Margin="10" Padding="10,4">Auto hinzufügen</Button>
-            <Button Name="AddKunde" Click="AddKunde_OnClick" Margin="0,10,10, 10" Padding="10,4">Kunde hinzufügen</Button>
+            <Button Command="{Binding AddAuto}" Margin="10" Padding="10,4">Auto hinzufügen</Button>
+            <Button Command="{Binding AddKunde}" Margin="0,10,10, 10" Padding="10,4">Kunde hinzufügen</Button>
+            <Button Command="{Binding AddReservation}" Margin="0,10,10, 10" Padding="10,4">Reservation hinzufügen</Button>
         </StackPanel>
     </Grid>
 </Window>

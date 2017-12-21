@@ -15,17 +15,43 @@ namespace AutoReservation.GUI.ViewModels
         public ObservableCollection<KundeDto> Kunden { get; } = new ObservableCollection<KundeDto>();
         public ObservableCollection<ReservationDto> Reservationen { get; } = new ObservableCollection<ReservationDto>();
 
+        public RelayCommand AddAutoCommand { get; }
+        public RelayCommand AddKundeCommand { get; }
+        public RelayCommand AddReservationCommand { get; }
+
         private DispatcherTimer DispatcherTimer { get; }
 
         public MainViewModel(AutoReservationService service)
         {
             _service = service;
 
+            AddAutoCommand = new RelayCommand(AddAuto);
+            AddKundeCommand = new RelayCommand(AddKunde);
+            AddReservationCommand = new RelayCommand(AddReservation);
+
             //update lists every 5 seconds
             DispatcherTimer = new DispatcherTimer();
             DispatcherTimer.Tick += UpdateLists;
             DispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             DispatcherTimer.Start();
+        }
+
+        private void AddAuto()
+        {
+            var addAutoWindow = new AddAutoWindow(_service);
+            addAutoWindow.ShowDialog();
+        }
+
+        private void AddKunde()
+        {
+            var addKundeWindow = new AddKundeWindow(_service);
+            addKundeWindow.ShowDialog();
+        }
+
+        private void AddReservation()
+        {
+            var addReservationWindow = new AddReservationWindow(_service);
+            addReservationWindow.ShowDialog();
         }
 
         private void UpdateLists(object sender, EventArgs e)
