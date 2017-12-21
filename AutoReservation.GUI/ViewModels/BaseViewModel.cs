@@ -31,8 +31,10 @@ namespace AutoReservation.Gui.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        protected void SetValue(object dto, string name, object value)
+        protected void SetValue(object dto, string name, object value, string notifyProperty = null)
         {
+            notifyProperty = notifyProperty ?? name;
+
             var prop = dto.GetType().GetProperty(name);
             if (prop != null)
             {
@@ -44,7 +46,7 @@ namespace AutoReservation.Gui.ViewModels
                 prop.SetValue(dto, value);
             }
 
-            OnPropertyChanged(name);
+            OnPropertyChanged(notifyProperty);
         }
     }
 }
