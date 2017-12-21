@@ -62,7 +62,7 @@ namespace AutoReservation.GUI.ViewModels
 			System.Console.WriteLine("Wahbadabadaba: " + id);
 		}
 
-		private void UpdateLists(object sender, EventArgs e)
+		private void UpdateLists(object sender = null, EventArgs e = null)
 		{
 			Autos.Clear();
 			foreach (var auto in _service.GetAutos())
