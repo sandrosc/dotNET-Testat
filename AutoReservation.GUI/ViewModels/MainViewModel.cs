@@ -33,8 +33,8 @@ namespace AutoReservation.GUI.ViewModels
             AddKundeCommand = new RelayCommand(AddKunde);
             AddReservationCommand = new RelayCommand(AddReservation);
             RemoveKundeCommand = new RelayCommand<int>(RemoveKunde);
-            RemoveReservationCommand = new RelayCommand<int>(RemoveKunde);
-            RemoveAutoCommand = new RelayCommand<int>(RemoveKunde);
+            RemoveReservationCommand = new RelayCommand<int>(RemoveReservation);
+            RemoveAutoCommand = new RelayCommand<int>(RemoveAuto);
 
             UpdateLists();
             //update lists every 5 seconds
