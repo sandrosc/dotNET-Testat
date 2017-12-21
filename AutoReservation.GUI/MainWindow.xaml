@@ -20,7 +20,7 @@
                             <DataGridTextColumn Header="Marke" Width="*" Binding="{Binding Path=Marke}" />
                             <DataGridTextColumn Header="Tagestarif" Width="*" Binding="{Binding Path=Tagestarif}" />
                             <DataGridTextColumn Header="Basistarif" Width="*" Binding="{Binding Path=Basistarif}" />
-                            <DataGridTextColumn Header="Klasse" Width="*" Binding="{Binding Path=Klasse}" />
+                            <DataGridTextColumn Header="Klasse" Width="*" Binding="{Binding Path=AutoKlasse}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
@@ -50,16 +50,15 @@
             <TabItem Header="Reservationen">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Reservationen:</TextBlock>
-                    <DataGrid ItemsSource="{Binding Reservationen}" AutoGenerateColumns="True"
+                    <DataGrid ItemsSource="{Binding Reservationen}" AutoGenerateColumns="False"
                               CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
                               CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Reservations-Nr." Width="*" Binding="{Binding Path=ReservationsNr}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Von" Width="*" Binding="{Binding Path=Von}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Bis" Width="*" Binding="{Binding Path=Bis}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Auto ID" Width="*" Binding="{Binding Path=AutoId}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kunde ID" Width="*" Binding="{Binding Path=KundeId}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Auto ID" Width="*" Binding="{Binding Path=Auto}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kunde ID" Width="*" Binding="{Binding Path=Kunde}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>

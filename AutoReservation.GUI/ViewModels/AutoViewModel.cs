@@ -23,7 +23,6 @@ namespace AutoReservation.GUI.ViewModels
             _view = view;
             _service = service;
 
-            // Todo check if save is possible
             SaveCommand = new RelayCommand(
                 Save,
                 () => AutoDto.Marke != string.Empty && AutoDto.Tagestarif != 0 && (AutoDto.AutoKlasse != AutoKlasse.Luxusklasse || AutoDto.Basistarif != 0)

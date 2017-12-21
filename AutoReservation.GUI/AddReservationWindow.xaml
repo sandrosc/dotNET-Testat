@@ -19,13 +19,13 @@
             <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0">Kunde</Label>
-        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Kunden}" SelectedItem="{Binding Kunde}" Padding="4"></ComboBox>
+        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Kunden}" DisplayMemberPath="Nachname" SelectedItem="{Binding Kunde}" Padding="4"></ComboBox>
         <Label Grid.Row="1" Grid.Column="0">Auto</Label>
-        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Autos}" SelectedItem="{Binding Auto}" Padding="4"></ComboBox>
+        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Autos}" DisplayMemberPath="Marke" SelectedItem="{Binding Auto}" Padding="4"></ComboBox>
         <Label Grid.Row="2" Grid.Column="0">Startdatum</Label>
-        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Startdatum}" Padding="4"></DatePicker>
+        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Von}" Padding="4"></DatePicker>
         <Label Grid.Row="3" Grid.Column="0">Enddatum</Label>
-        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Enddatum}" Padding="4"></DatePicker>
+        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Bis}" Padding="4"></DatePicker>
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="AddKunde" Command="{Binding SaveCommand}">Reservation hinzufügen</Button>
     </Grid>
 </Window>

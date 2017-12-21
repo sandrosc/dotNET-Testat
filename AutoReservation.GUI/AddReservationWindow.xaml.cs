@@ -8,7 +8,7 @@ namespace AutoReservation.GUI
         public AddReservationWindow(AutoReservationService service)
         {
             InitializeComponent();
-            //DataContext = new ReservationViewModel(this, service);
+            DataContext = new ReservationViewModel(this, service);
         }
     }
 }
