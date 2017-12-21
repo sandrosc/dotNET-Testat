@@ -9,7 +9,7 @@ using AutoReservation.Service.Wcf;
 
 namespace AutoReservation.GUI.ViewModels
 {
-    class ReservationViewModel : BaseViewModel
+    public class ReservationViewModel : BaseViewModel
     {
         //private readonly AddReservationWindow _view;
         private readonly AutoReservationService _service;
