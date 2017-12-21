@@ -31,7 +31,7 @@ namespace AutoReservation.Gui.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        protected void SetValue(IDto dto, string name, object value)
+        protected void SetValue(object dto, string name, object value)
         {
             var prop = dto.GetType().GetProperty(name);
             if (prop != null)
