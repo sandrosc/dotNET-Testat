@@ -16,7 +16,7 @@
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Autos:</TextBlock>
                     <DataGrid ItemsSource="{Binding Autos}" AutoGenerateColumns="False" CanUserReorderColumns="False"
-                              CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                              CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" Background="White">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -37,7 +37,7 @@
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top">Kunden:</TextBlock>
                     <DataGrid ItemsSource="{Binding Kunden}" AutoGenerateColumns="False" CanUserReorderColumns="False"
-                              CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                              CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" Background="White">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -59,12 +59,12 @@
                     <TextBlock DockPanel.Dock="Top">Reservationen:</TextBlock>
                     <DataGrid ItemsSource="{Binding Reservationen}" AutoGenerateColumns="False"
                               CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
-                              CanUserAddRows="False">
+                              CanUserAddRows="False" Background="White">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Actions" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Remove" CommandParameter="{Binding Id}" Command="{Binding DataContext.RemoveReservationCommand, ElementName=HomeWindow}"/>
+                                        <Button Content="Remove" CommandParameter="{Binding ReservationsNr}" Command="{Binding DataContext.RemoveReservationCommand, ElementName=HomeWindow}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

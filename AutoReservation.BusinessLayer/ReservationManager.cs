@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -19,6 +20,17 @@ namespace AutoReservation.BusinessLayer
                     .Include(r => r.Auto)
                     .Include(r => r.Kunde)
                     .FirstOrDefault(r => r.ReservationsNr == id);
+            }
+        }
+
+        public override List<Reservation> GetList()
+        {
+            using (var context = new AutoReservationContext())
+            {
+                return context.Reservationen
+                    .Include(r => r.Auto)
+                    .Include(r => r.Kunde)
+                    .ToList();
             }
         }
 

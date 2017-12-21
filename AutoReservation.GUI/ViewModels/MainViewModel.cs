@@ -12,6 +12,7 @@ namespace AutoReservation.GUI.ViewModels
 	{
 		public class AutoRow
 		{
+            public int Id { get; }
 			public string Marke { get; }
 			public AutoKlasse AutoKlasse { get; }
 			public int Tagestarif { get; }
@@ -19,6 +20,7 @@ namespace AutoReservation.GUI.ViewModels
 
 			public AutoRow(AutoDto autoDto)
 			{
+			    Id = autoDto.Id;
 				Marke = autoDto.Marke;
 				AutoKlasse = autoDto.AutoKlasse;
 				Tagestarif = autoDto.Tagestarif;
@@ -71,13 +73,13 @@ namespace AutoReservation.GUI.ViewModels
 
 		private void RemoveReservation(int id)
 		{
-			_service.RemoveReservation(Reservationen.FirstOrDefault(r => r.ReservationsNr == id));
+			_service.RemoveReservation(_service.GetReservation(id));
 			UpdateLists();
 		}
 
 		private void RemoveAuto(int id)
 		{
-			_service.RemoveAuto(Autos.FirstOrDefault(a => a.Id == id));
+			_service.RemoveAuto(_service.GetAuto(id));
 			UpdateLists();
 		}
 
@@ -108,7 +110,7 @@ namespace AutoReservation.GUI.ViewModels
 			Autos.Clear();
 			foreach (var auto in _service.GetAutos())
 			{
-				Autos.Add(auto);
+				Autos.Add(new AutoRow(auto));
 			}
 			Kunden.Clear();
 			foreach (var kunde in _service.GetKunden())
