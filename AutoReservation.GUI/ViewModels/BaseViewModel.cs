@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using AutoReservation.Common.DataTransferObjects;
 
 namespace AutoReservation.Gui.ViewModels
 {
@@ -28,6 +29,22 @@ namespace AutoReservation.Gui.ViewModels
         protected void OnPropertyChanged(string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        protected void SetValue(IDto dto, string name, object value)
+        {
+            var prop = dto.GetType().GetProperty(name);
+            if (prop != null)
+            {
+                var field = prop.GetValue(dto);
+
+                if (Equals(field, value))
+                    return;
+
+                prop.SetValue(dto, value);
+            }
+
+            OnPropertyChanged(name);
         }
     }
 }

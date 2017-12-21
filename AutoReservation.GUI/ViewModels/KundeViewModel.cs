@@ -60,18 +60,7 @@ namespace AutoReservation.GUI.ViewModels
 
         private void SetValue(string name, object value)
         {
-            var prop = KundeDto.GetType().GetProperty(name);
-            if (prop != null)
-            {
-                var field = prop.GetValue(KundeDto);
-
-                if (Equals(field, value))
-                    return;
-
-                prop.SetValue(KundeDto, value);
-            }
-
-            OnPropertyChanged(name);
+            SetValue(KundeDto, name, value);
         }
     }
 }
