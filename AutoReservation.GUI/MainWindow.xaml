@@ -37,6 +37,16 @@
                     </DataGrid>
                 </DockPanel>
             </TabItem>
+            <TabItem Header="Reservationen">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top">Reservationen:</TextBlock>
+                    <DataGrid ItemsSource="{Binding Reservationen}" AutoGenerateColumns="True" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button Name="AddAuto" Click="AddAuto_OnClick" Margin="10" Padding="10,4">Auto hinzufügen</Button>
